@@ -33,13 +33,13 @@
   &__day {
     position: relative;
     flex: 1;
-    border-left: 1px solid #eee;
+    border-left: 1px solid rgba(63, 27, 183, 0.5);
   }
 
   &__time-slot {
     height: 59px;
     position: relative;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(63, 27, 183, 0.5);
   }
 
   &__day-label {
