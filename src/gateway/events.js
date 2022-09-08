@@ -28,7 +28,7 @@ const events = [
     title: 'Meet friend',
     description: 'at the cafe',
     dateFrom: new Date(2022, 8, 6, 10, 0),
-    dateTo: new Date(2022, 8, 6, 11, 0),
+    dateTo: new Date(2022, 8, 6, 15, 0),
     
   },
 ];
