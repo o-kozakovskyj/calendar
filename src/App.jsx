@@ -6,7 +6,6 @@ import { getWeekStartDate, generateWeekRange, getMonthName } from '../src/utils/
 
 import './common.scss';
 const App = () => {
-  // const [weekStartDate] = useState(new Date())
   const [weekStartDate, setWeekStartDate] = useState(new Date());
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const month = getMonthName(weekDates);
