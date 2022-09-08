@@ -1,8 +1,8 @@
 import React from 'react';
-import { weekSlider } from '../../utils/dateUtils';
+import { weekSlider} from '../../utils/dateUtils';
 import './header.scss';
 
-const Header = ({ setDate, date }) => {
+const Header = ({ setDate, date, month }) => {
   return (
     <header className="header">
       <button className="button create-event-btn">
@@ -16,7 +16,7 @@ const Header = ({ setDate, date }) => {
         <button className="icon-button navigation__nav-icon" onClick={() => setDate(weekSlider(date, 'future'))}>
           <i className="fas fa-chevron-right"></i>
         </button>
-        <span className="navigation__displayed-month">{date.getMonth()}</span>
+        <span className="navigation__displayed-month">{month}</span>
       </div>
     </header>
   );

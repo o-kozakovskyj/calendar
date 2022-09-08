@@ -51,3 +51,11 @@ export const weekSlider = (startDay, direction) => {
   }
   return new Date(startDay.setDate(startDay.getDate() - 7))
 }
+export const getMonthName = (weekRange) => {
+  const weekStartMonth = weekRange[0].getMonth();
+  const weekEndMonth = weekRange[6].getMonth();
+  if (weekStartMonth === weekEndMonth) {
+    return months[weekEndMonth]
+  }
+  return (`${months[weekStartMonth]} - ${months[weekEndMonth]}`)
+}
