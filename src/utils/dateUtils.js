@@ -45,3 +45,9 @@ export const months = [
   'November',
   'December',
 ];
+export const weekSlider = (startDay, direction) => {
+  if (direction === 'future') {
+    return new Date(startDay.setDate(startDay.getDate() + 7))
+  }
+  return new Date(startDay.setDate(startDay.getDate() - 7))
+}
