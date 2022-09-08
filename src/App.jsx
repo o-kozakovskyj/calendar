@@ -6,16 +6,16 @@ import { getWeekStartDate, generateWeekRange, getMonthName } from '../src/utils/
 
 import './common.scss';
 const App = () => {
-  const [weekStartDate] = useState(new Date())
-  const [date, setDate] = useState(new Date());
-  const weekDates = generateWeekRange(getWeekStartDate(date));
+  // const [weekStartDate] = useState(new Date())
+  const [weekStartDate, setWeekStartDate] = useState(new Date());
+  const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const month = getMonthName(weekDates);
   return (
     <>
       
       <Header
-        date={date}
-        setDate={setDate}
+        date={weekStartDate}
+        setWeekStartDate={setWeekStartDate}
         month = {month}
       />
       <Calendar weekDates={weekDates} />
