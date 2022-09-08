@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './modal.scss';
 
-class Modal extends Component {
-  render() {
+const Modal=()=> {
+  
     return (
       <div className="modal overlay">
         <div className="modal__content">
@@ -45,6 +45,5 @@ class Modal extends Component {
       </div>
     );
   }
-}
 
 export default Modal;

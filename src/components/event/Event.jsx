@@ -7,7 +7,6 @@ const Event = ({ height, marginTop, title, time }) => {
     height,
     marginTop,
   };
-
   return (
     <div style={eventStyle} className="event">
       <div className="event__title">{title}</div>
