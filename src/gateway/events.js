@@ -9,10 +9,10 @@ const events = [
   },
   {
     id: 2,
-    title: 'Go to the school',
+    title: 'Go to the work',
     description: 'hello, 2 am',
-    dateFrom: new Date(2022, 8, 11, 10, 15),
-    dateTo: new Date(2022, 8, 11, 11, 0),
+    dateFrom: new Date(2022, 8, 11, 8, 15),
+    dateTo: new Date(2022, 8, 11, 11, 15),
     
   },
   {
