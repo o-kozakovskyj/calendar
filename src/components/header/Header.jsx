@@ -2,11 +2,11 @@ import React from 'react';
 import { weekSlider} from '../../utils/dateUtils';
 import './header.scss';
 
-const Header = ({ setWeekStartDate, date, month }) => {
+const Header = ({ setWeekStartDate, date, month, setIsShowModal }) => {
   return (
     <header className="header">
-      <button className="button create-event-btn">
-        <i className="fas fa-plus create-event-btn__icon"></i>Create
+      <button className="button create-event-btn" onClick={()=>setIsShowModal(true)}>
+        <i className="fas fa-plus create-event-btn__icon" ></i>Create
       </button>
       <div className="navigation">
         <button className="navigation__today-btn button" onClick={() => setWeekStartDate(new Date())}>Today</button>
