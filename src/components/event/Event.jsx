@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import './event.scss';
 
-const Event = ({ height, marginTop, title, time, id}) => {
+const Event = ({ height, marginTop, title, time, id, events, deleteEvent }) => {
   const eventStyle = {
     height,
     marginTop,
@@ -16,7 +16,7 @@ const Event = ({ height, marginTop, title, time, id}) => {
       setIsShowDelBtn(!isShowDelBtn)
     }
     if (event.target.className === "delete-event-btn") {
-      alert(id)
+      deleteEvent(id);
       setIsShowDelBtn(!isShowDelBtn)
     }
   };

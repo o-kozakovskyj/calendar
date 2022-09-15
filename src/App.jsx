@@ -14,9 +14,13 @@ const App = () => {
   const month = getMonthName(weekDates);
 
   const addEvent = (formDat) => {
-    // eventsList.push(formDat);
+   
     setEvents([...eventsList, formDat]);
+  } 
+  const deleteEvent = (id) => {
+    setEvents(eventsList.filter(event => event.id !==id))
   }
+
   const [isshowModal, setIsShowModal] = useState(false)
   const modalWindow = isshowModal === true
     ? <Modal
@@ -34,7 +38,12 @@ const App = () => {
         month={month}
         setIsShowModal={setIsShowModal}
       />
-      <Calendar weekDates={weekDates} event={events} addEvent={addEvent} />
+      <Calendar
+        weekDates={weekDates}
+        event={events}
+        addEvent={addEvent}
+        deleteEvent={deleteEvent}
+      />
       {modalWindow}
     </>
   );
