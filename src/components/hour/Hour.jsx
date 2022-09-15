@@ -20,6 +20,7 @@ const Hour = ({ dataHour, hourEvents }) => {
           
           <Event
             key={id}
+            id={id}
             //calculating event height = duration of event in minutes
             height={(dateTo.getTime() - dateFrom.getTime()) / (1000 * 60)}
             marginTop={dateFrom.getMinutes()}

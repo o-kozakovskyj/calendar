@@ -34,7 +34,7 @@ const App = () => {
         month={month}
         setIsShowModal={setIsShowModal}
       />
-      <Calendar weekDates={weekDates} event={events} />
+      <Calendar weekDates={weekDates} event={events} addEvent={addEvent} />
       {modalWindow}
     </>
   );

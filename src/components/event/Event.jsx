@@ -3,29 +3,36 @@ import { useState } from 'react';
 
 import './event.scss';
 
-const Event = ({ height, marginTop, title, time }) => {
+const Event = ({ height, marginTop, title, time, id}) => {
   const eventStyle = {
     height,
     marginTop,
   };
-  const [isShowPopup, setIsShowPopup] = useState(false);
+  const [isShowDelBtn, setIsShowDelBtn] = useState(false);
 
-  const handleDelete = (event) => {
-    setIsShowPopup(true)
+  const handleSwitchEvents = (event) => {
+    event.stopPropagation();
+    if (event.target.className === "event") {
+      setIsShowDelBtn(!isShowDelBtn)
+    }
+    if (event.target.className === "delete-event-btn") {
+      alert(id)
+      setIsShowDelBtn(!isShowDelBtn)
+    }
   };
-  const popup = isShowPopup === true ? <button className="delete-event-btn">
-    <i class="far fa-trash-alt"></i>
-    Delete event
-  </button> : null;
+  
+  const delBtn = isShowDelBtn === true
+    ? <button className="delete-event-btn">
+        <i className="far fa-trash-alt delete-event-btn__icon"></i>
+        Delete
+      </button>
+    : null;
   return (
-    <>
-      <div style={eventStyle} className="event" onClick={handleDelete}>
+      <div style={eventStyle} className="event" onClick={handleSwitchEvents}>
         <div className="event__title">{title}</div>
         <div className="event__time">{time}</div>
+        {delBtn}
       </div>
-      {popup}
-    </>
-    
   );
 };
 

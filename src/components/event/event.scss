@@ -22,6 +22,15 @@
 }
 
 .delete-event-btn {
+  position: relative;
+  top: 10px;
+  left: 64px;
   cursor: pointer;
   border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  z-index: 10;
+  &__icon {
+    margin-right: 28px;
+  }
 }
