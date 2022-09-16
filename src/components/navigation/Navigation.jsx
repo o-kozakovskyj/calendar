@@ -5,7 +5,7 @@ import { days } from '../../utils/dateUtils.js';
 const Navigation = ({ weekDates }) => {
   return (
     <header className="calendar__header">
-      <span className='calendar__gmt'>GMT+02</span>
+      <span className='calendar__gmt'>{`GMT + ${new Date().getTimezoneOffset() / -60}`}</span>
       {weekDates.map((dayDate) => {
         let dayNameStyle;
         let dayNumberStyle;

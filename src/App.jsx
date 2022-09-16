@@ -15,7 +15,7 @@ const App = () => {
 
   const addEvent = (formDat) => {
    
-    setEvents([...eventsList, formDat]);
+    setEvents([events, formDat]);
   } 
   const deleteEvent = (id) => {
     setEvents(eventsList.filter(event => event.id !==id))

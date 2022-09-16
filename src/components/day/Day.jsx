@@ -7,7 +7,7 @@ const Day = ({ dataDay, dayEvents, deleteEvent }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
-
+  
   return (
     <div className="calendar__day" data-day={dataDay}>
       {hours.map((hour) => {
@@ -17,7 +17,13 @@ const Day = ({ dataDay, dayEvents, deleteEvent }) => {
         );
 
         return (
-          <Hour key={dataDay + hour} dataHour={hour} hourEvents={hourEvents} deleteEvent={deleteEvent} />
+          <Hour
+            key={dataDay + hour}
+            dataHour={hour}
+            hourEvents={hourEvents}
+            deleteEvent={deleteEvent}
+            dataDay={dataDay}
+          />
         );
       })}
     </div>
