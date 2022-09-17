@@ -5,6 +5,7 @@ export const fetchEventsList = () => {
       if (response.ok) {
         return response.json();
       }
+      throw new Error(`Internal Server Error. Can't display events`)
     })
     .then(tasksList => {
       return tasksList;

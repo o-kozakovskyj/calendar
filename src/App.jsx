@@ -10,7 +10,8 @@ const App = () => {
   const [events, setEvents] = useState([]);
  const fetchEvents = () => {
    fetchEventsList()
-     .then(eventsList => setEvents(eventsList));
+     .then(eventsList => setEvents(eventsList))
+     .catch(error=> alert(error))
   };
   useEffect(() => fetchEvents(),[]);
 
