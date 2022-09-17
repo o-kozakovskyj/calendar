@@ -1,24 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 import Modal from './components/modal/Modal.jsx';
-import eventsList from './gateway/events.js';
+import { createEvent, fetchEventsList, deleteEvent } from './gateway/events.js';
 import { getWeekStartDate, generateWeekRange, getMonthName } from '../src/utils/dateUtils.js';
 import './common.scss';
 
 const App = () => {
+  const [events, setEvents] = useState([]);
+ const fetchEvents = () => {
+   fetchEventsList()
+     .then(eventsList => setEvents(eventsList));
+  };
+  useEffect(() => fetchEvents(),[]);
 
-  const [events, setEvents] = useState(eventsList);
   const [weekStartDate, setWeekStartDate] = useState(new Date());
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const month = getMonthName(weekDates);
 
   const addEvent = (formDat) => {
-   
-    setEvents([events, formDat]);
-  } 
-  const deleteEvent = (id) => {
-    setEvents(eventsList.filter(event => event.id !==id))
+    createEvent(formDat).then(() => fetchEvents())
+  };
+
+  const delEvent = (id) => {
+    deleteEvent(id).then(() => fetchEvents())
   }
 
   const [isshowModal, setIsShowModal] = useState(false)
@@ -40,9 +45,9 @@ const App = () => {
       />
       <Calendar
         weekDates={weekDates}
-        event={events}
+        events={events}
         addEvent={addEvent}
-        deleteEvent={deleteEvent}
+        deleteEvent={delEvent}
       />
       {modalWindow}
     </>

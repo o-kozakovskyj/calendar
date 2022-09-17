@@ -7,13 +7,14 @@ const Day = ({ dataDay, dayEvents, deleteEvent }) => {
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
-  
+  console.log(dayEvents);
   return (
     <div className="calendar__day" data-day={dataDay}>
       {hours.map((hour) => {
         //getting all events from the day we will render
+        
         const hourEvents = dayEvents.filter(
-          (event) => event.dateFrom.getHours() === hour
+          (event) =>new Date(event.dateFrom).getHours() === hour
         );
 
         return (

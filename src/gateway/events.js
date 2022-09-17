@@ -1,36 +1,36 @@
-const eventsList = [
-  {
-    id: 1,
-    title: 'Go to the gym',
-    description: 'some text here',
-    dateFrom: new Date(2022, 8, 14, 10, 0),
-    dateTo: new Date(2022, 8, 14, 11, 0),
+const baseUrl = 'https://63065f06c0d0f2b8011beb27.mockapi.io/api/v1/events';
+export const fetchEventsList = () => {
+  return fetch(baseUrl)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      }
+    })
+    .then(tasksList => {
+      return tasksList;
+    });
+}
+export const createEvent = eventData => {
 
-  },
-  {
-    id: 2,
-    title: 'Go to the work',
-    description: 'hello, 2 am',
-    dateFrom: new Date(2022, 8, 14, 8, 15),
-    dateTo: new Date(2022, 8, 14, 11, 15),
+  return fetch(baseUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(eventData),
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error('Fail to create event')
+    }
+  });
+}
 
-  },
-  {
-    id: 3,
-    title: 'Lunch',
-    description: '',
-    dateFrom: new Date(2022, 8, 17, 10, 30),
-    dateTo: new Date(2022, 8, 17, 11, 30),
-
-  },
-  {
-    id: 4,
-    title: 'Meet friend',
-    description: 'at the cafe',
-    dateFrom: new Date(2022, 8, 18, 10, 0),
-    dateTo: new Date(2022, 8, 18, 15, 0),
-
-  },
-];
-
-export default eventsList;
+export const deleteEvent = eventId => {
+  return fetch(`${baseUrl}/${eventId}`, {
+    method: 'DELETE'
+  }).then(response => {
+    if (!response.ok) {
+      throw new Error('Fail to delete event');
+    }
+  });
+}
