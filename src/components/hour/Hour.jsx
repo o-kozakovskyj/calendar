@@ -15,7 +15,11 @@ const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay }) => {
       clearInterval(intervalId);
     };
   }, []);
-  const currentTime = <div className="red-line" style={{ marginTop: current.getMinutes() }}></div>  
+  const currentTime =
+    <div className="current-time" style={{ marginTop: current.getMinutes() }}>
+      <div className="current-time__point" ></div>
+      <div className="current-time__line" ></div>
+    </div>  
   
   return (
     <div className="calendar__time-slot" data-time={dataHour}>
