@@ -21,6 +21,7 @@ const App = () => {
   const month = getMonthName(weekDates);
 
   const addEvent = (formDat) => {
+    
     createEvent(formDat).then(() => fetchEvents())
   };
 
@@ -31,7 +32,7 @@ const App = () => {
   const [isshowModal, setIsShowModal] = useState(false);
   const [dateFrom, setDatefrom] = useState(moment(new Date()).format('YYYY-MM-DD[T]HH:mm'));
   const [dateTo, setDateTo] = useState(moment(new Date()).format('YYYY-MM-DD[T]HH:mm'));
-  
+
   const handleModalSwitch = (dateStart, dateEnd) => {
     setDatefrom(dateStart);
     setDateTo(dateEnd);

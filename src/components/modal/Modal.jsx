@@ -22,7 +22,16 @@ const Modal = ({ setIsShowModal, addEvent, dateTo, dateFrom })=> {
     })
   };
   const handleInputListener = (e) => {
-    setFormDat({ ...formDat, [e.target.name]: e.target.value })
+    const { name, value } = e.target;
+    if (name === "endTime" && (moment.duration(value).asHours() - moment.duration(formDat.startTime).asHours())>6) {
+      alert('You can`t create event longer then 6 hours')
+      return
+    }
+    if (name === "startTime" && (moment.duration(formDat.endTime).asHours() - moment.duration(value).asHours()) > 6) {
+      alert('You can`t create event longer then 6 hours')
+      return
+    }
+    setFormDat({ ...formDat, [name]: value })
   }
     return (
       <div className="modal overlay">

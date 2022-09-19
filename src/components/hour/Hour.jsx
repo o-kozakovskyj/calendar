@@ -28,12 +28,11 @@ const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay }) => {
         const eventEnd = `${new Date(dateTo).getHours()}:${formatMins(
           new Date(dateTo).getMinutes()
         )}`;
-       
-        return (
-          
+        return (    
           <Event
             key={id}
             id={id}
+            startTime={dateFrom}
             //calculating event height = duration of event in minutes
             height={(new Date(dateTo).getTime() - new Date(dateFrom).getTime()) / (1000 * 60)}
             marginTop={new Date(dateFrom).getMinutes()}

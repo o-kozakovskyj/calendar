@@ -1,9 +1,9 @@
 import React from 'react';
 import { useState } from 'react';
-
+import moment from 'moment/moment';
 import './event.scss';
 
-const Event = ({ height, marginTop, title, time, id, events, deleteEvent }) => {
+const Event = ({ height, marginTop, title, time, id, startTime, deleteEvent }) => {
   const eventStyle = {
     height,
     marginTop,
@@ -12,12 +12,20 @@ const Event = ({ height, marginTop, title, time, id, events, deleteEvent }) => {
 
   const handleSwitchEvents = (event) => {
     event.stopPropagation();
+    const timeToStart = moment.duration(new Date(startTime)).asMinutes()- moment.duration(new Date()).asMinutes();
+
+    if (timeToStart < 15) {
+      alert(`Can't delete an event before less than 15 minutes to start`)
+      return
+    }
     if (event.target.className === "event") {
       setIsShowDelBtn(!isShowDelBtn)
+      return
     }
-    if (event.target.className === "delete-event-btn") {
+    if (event.target.className === "delete-event-btn" ) {
       deleteEvent(id);
       setIsShowDelBtn(!isShowDelBtn)
+      return
     }
   };
   
