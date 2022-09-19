@@ -1,11 +1,17 @@
 import React from 'react';
 import { weekSlider} from '../../utils/dateUtils';
 import './header.scss';
+import moment from 'moment/moment';
 
-const Header = ({ setWeekStartDate, date, month, setIsShowModal }) => {
+const Header = ({ setWeekStartDate, date, month, handleModalSwitch }) => {
+  const handleModalWithData = () => {
+    const dateFrom = moment(new Date()).format('YYYY-MM-DD[T]HH:mm');
+    const dateTo =dateFrom;
+    handleModalSwitch(dateFrom, dateTo);
+  }
   return (
     <header className="header">
-      <button className="button create-event-btn" onClick={()=>setIsShowModal(true)}>
+      <button className="button create-event-btn" onClick={handleModalWithData}>
         <i className="fas fa-plus create-event-btn__icon" ></i>Create
       </button>
       <div className="navigation">

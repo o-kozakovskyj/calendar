@@ -18,7 +18,7 @@ const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay }) => {
   const currentTime = <div className="red-line" style={{ marginTop: current.getMinutes() }}></div>  
   
   return (
-    <div className="calendar__time-slot" data-time={dataHour + 1}>
+    <div className="calendar__time-slot" data-time={dataHour}>
       
       {/* if no events in the current hour nothing will render here */}
       {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
@@ -43,7 +43,7 @@ const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay }) => {
           />
         );
       })}
-      {current.getDate() === dataDay && current.getHours() ===dataHour && currentTime}
+      {current.getDate() === dataDay.getDate() && current.getHours() ===dataHour && currentTime}
     </div>
   );
 };

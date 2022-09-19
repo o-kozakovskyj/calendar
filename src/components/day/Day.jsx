@@ -1,15 +1,22 @@
 import React from 'react';
 import Hour from '../hour/Hour';
-
+import moment from 'moment/moment';
 import './day.scss';
 
-const Day = ({ dataDay, dayEvents, deleteEvent }) => {
+const Day = ({ dataDay, dayEvents, deleteEvent, handleModalSwitch }) => {
+  const handleModalWithData = (event) => {
+    
+    const choosenDate = new Date(dataDay.setHours(event.target.dataset.time));
+    const dateFrom = moment(choosenDate).format('YYYY-MM-DD[T]HH:mm');
+    const dateTo = moment(choosenDate).add(1, 'hours').format('YYYY-MM-DD[T]HH:mm');
+    
+    handleModalSwitch(dateFrom, dateTo);
+  }
   const hours = Array(24)
     .fill()
     .map((val, index) => index);
-  console.log(dayEvents);
   return (
-    <div className="calendar__day" data-day={dataDay}>
+    <div className="calendar__day" data-day={dataDay} onClick={handleModalWithData}>
       {hours.map((hour) => {
         //getting all events from the day we will render
         
@@ -19,7 +26,7 @@ const Day = ({ dataDay, dayEvents, deleteEvent }) => {
 
         return (
           <Hour
-            key={dataDay + hour}
+            key={dataDay.getDate() + hour}
             dataHour={hour}
             hourEvents={hourEvents}
             deleteEvent={deleteEvent}

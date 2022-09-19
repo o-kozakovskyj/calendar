@@ -1,26 +1,28 @@
 import React from 'react';
 import './modal.scss';
 import { useState } from 'react';
+import moment from 'moment/moment';
 
 
-const Modal = ({ setIsShowModal, events, addEvent })=> {
+const Modal = ({ setIsShowModal, addEvent, dateTo, dateFrom })=> {
   const [formDat, setFormDat] = useState({
     title: "",
-    dateFrom: new Date(),
-    dateTo: new Date(),
     description: "",
-    id: events.length + 1,
+    date: dateFrom.split('T')[0],
+    startTime: dateFrom.split('T')[1],
+    endTime: dateTo.split('T')[1],
   });
-  const handleClick = (event) => {
-    event.preventDefault()
+
+  const handleSubmit = () => {
     addEvent({
       title: formDat.title,
       description: formDat.description,
-      id: formDat.id,
-      dateFrom: new Date(formDat.dateFrom),
-      dateTo: new Date(formDat.dateTo)
+      dateFrom: moment(formDat.date + ' ' + formDat.startTime),
+      dateTo: moment(formDat.date + ' ' + formDat.endTime),
     })
-    setIsShowModal(false);
+  };
+  const handleInputListener = (e) => {
+    setFormDat({ ...formDat, [e.target.name]: e.target.value })
   }
     return (
       <div className="modal overlay">
@@ -34,23 +36,29 @@ const Modal = ({ setIsShowModal, events, addEvent })=> {
                 placeholder="Title"
                 className="event-form__field"
                 value={formDat.title}
-                onChange={(e) => setFormDat({ ...formDat, title: e.target.value })}
+                onChange={handleInputListener}
               />
               <div className="event-form__time">
                 <input
-                 type="datetime-local"
-                  name="dateFrom"
+                  type="date"
+                  name="date"
+                  value={formDat.date}
                   className="event-form__field"
-                  value={formDat.dateFrom}
-                  onChange={(e) => setFormDat({ ...formDat, dateFrom: e.target.value })}
+                  onChange={handleInputListener} />
+                <input
+                  type="time"
+                  name="startTime"
+                  value={formDat.startTime}
+                  className="event-form__field"
+                  onChange={handleInputListener}
                 />
                 <span>-</span>
                 <input
-                  type="datetime-local"
-                  name="dateTo"
+                  type="time"
+                  name="endTime"
+                  value={formDat.endTime}
                   className="event-form__field"
-                  value={formDat.dateTo}
-                  onChange={(e) => setFormDat({ ...formDat, dateTo: e.target.value })}
+                  onChange={handleInputListener}
                 />
               </div>
               <textarea
@@ -58,12 +66,12 @@ const Modal = ({ setIsShowModal, events, addEvent })=> {
                 placeholder="Description"
                 className="event-form__field"
                 value={formDat.description}
-                onChange={(e) => setFormDat({ ...formDat, description: e.target.value })}
+                onChange={handleInputListener}
               ></textarea>
               <button
                 type="submit"
                 className="event-form__submit-btn"
-                onClick={handleClick}
+                onClick={handleSubmit}
               >
                 Create
               </button>
