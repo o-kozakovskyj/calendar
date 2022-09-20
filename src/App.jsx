@@ -1,56 +1,35 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 import Modal from './components/modal/Modal.jsx';
 import moment from 'moment/moment.js';
-import { createEvent, fetchEventsList, deleteEvent } from './gateway/events.js';
 import { getWeekStartDate, generateWeekRange, getMonthName } from '../src/utils/dateUtils.js';
 import './common.scss';
 
 const App = () => {
-  const [events, setEvents] = useState([]);
- const fetchEvents = () => {
-   fetchEventsList()
-     .then(eventsList => setEvents(eventsList))
-     .catch(error=> alert(error))
-  };
-  useEffect(() => fetchEvents(),[]);
-
   const [weekStartDate, setWeekStartDate] = useState(new Date());
   const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
   const month = getMonthName(weekDates);
 
-  const addEvent = (formDat) => {
-    
-    createEvent(formDat).then(() => fetchEvents())
-  };
-
-  const delEvent = (id) => {
-    deleteEvent(id).then(() => fetchEvents())
-  }
- 
-  const [isshowModal, setIsShowModal] = useState(false);
-  const [dateFrom, setDatefrom] = useState(moment(new Date()).format('YYYY-MM-DD[T]HH:mm'));
-  const [dateTo, setDateTo] = useState(moment(new Date()).format('YYYY-MM-DD[T]HH:mm'));
-
-  const handleModalSwitch = (dateStart, dateEnd) => {
-    setDatefrom(dateStart);
-    setDateTo(dateEnd);
+  const [isShowModal, setIsShowModal] = useState(false);
+  const [dateInPicker, setDateInPicker] = useState({
+    startDate: moment(new Date()).format('YYYY-MM-DD[T]HH:mm'),
+    finishDate: moment(new Date()).format('YYYY-MM-DD[T]HH:mm'),
+  })
+  const handleModalSwitch = (start, finish) => {
+    setDateInPicker({
+      startDate: start,
+      finishDate: finish,
+   })
     setIsShowModal(true)
   }
-  const modalWindow = isshowModal === true
+  const modalWindow = isShowModal === true
     ? <Modal
       setIsShowModal={setIsShowModal}
-      addEvent={addEvent}
-      events={events}
-      dateFrom={dateFrom}
-      dateTo={dateTo}
-
+      dateFrom={dateInPicker.startDate}
+      dateTo={dateInPicker.finishDate}
     />
     : null;
-  
-
- 
   return (
     <>
       <Header
@@ -61,9 +40,6 @@ const App = () => {
       />
       <Calendar
         weekDates={weekDates}
-        events={events}
-        addEvent={addEvent}
-        deleteEvent={delEvent}
         handleModalSwitch={handleModalSwitch}
       />
       {modalWindow}

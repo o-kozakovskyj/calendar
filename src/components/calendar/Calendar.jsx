@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
-// import events from '../../gateway/events';
-
+import { fetchEventsList, deleteEvent } from '../../gateway/events.js';
 import './calendar.scss';
 
-const Calendar = ({ weekDates, events, deleteEvent, handleModalSwitch }) => {
-  // const [event] = useState(events);
- 
+const Calendar = ({ weekDates,handleModalSwitch }) => {
+  const [events, setEvents] = useState([]);
+  const fetchEvents = () => {
+    fetchEventsList()
+      .then(eventsList => setEvents(eventsList))
+      .catch(error => alert(error))
+  };
+  const delEvent = (id) => {
+    deleteEvent(id).then(() => fetchEvents())
+  }
+  useEffect(() => fetchEvents(), []);
+
     return (
       <section className="calendar" >
         <Navigation weekDates={weekDates} />
@@ -19,7 +27,7 @@ const Calendar = ({ weekDates, events, deleteEvent, handleModalSwitch }) => {
             <Week
               weekDates={weekDates}
               events={events}
-              deleteEvent={deleteEvent}
+              deleteEvent={delEvent}
               handleModalSwitch={handleModalSwitch}
             />
           </div>

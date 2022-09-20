@@ -3,7 +3,7 @@ import { useState } from 'react';
 import moment from 'moment/moment';
 import './event.scss';
 
-const Event = ({ height, marginTop, title, time, id, startTime, deleteEvent }) => {
+const Event = ({ height, marginTop, title, time, id, startTime, deleteEvent, endTime }) => {
   const eventStyle = {
     height,
     marginTop,
@@ -12,9 +12,10 @@ const Event = ({ height, marginTop, title, time, id, startTime, deleteEvent }) =
 
   const handleSwitchEvents = (event) => {
     event.stopPropagation();
+    const minutesToStart = 15;
+    const timeFromEnd = new Date() - new Date(endTime);
     const timeToStart = moment.duration(new Date(startTime)).asMinutes()- moment.duration(new Date()).asMinutes();
-
-    if (timeToStart < 15) {
+    if (timeToStart < minutesToStart && timeFromEnd <= 0 ) {
       alert(`Can't delete an event before less than 15 minutes to start`)
       return
     }
