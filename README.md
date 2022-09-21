@@ -1,6 +1,7 @@
 # Calendar
 ### [Site link](https://calend.netlify.app/)
 -Layout supports all mobile and desktop versions
+-Data stores on mock.api server
 ### The tech stack is:
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
