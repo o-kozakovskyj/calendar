@@ -1,6 +1,7 @@
 import React from 'react';
 import './modal.scss';
 import { useState } from 'react';
+import { PropTypes } from 'prop-types';
 import moment from 'moment/moment';
 import { createEvent, fetchEventsList } from '../../gateway/events';
 
@@ -95,6 +96,15 @@ const Modal = ({ setIsShowModal, dateTo, dateFrom }) => {
       </div>
     </div>
   );
-}
+};
 
+Modal.propTypes = {
+  setIsShowModal: PropTypes.func,
+  dateTo: PropTypes.string ,
+  dateFrom: PropTypes.string,
+}
+Modal.defaultProps = {
+  dateTo: moment(new Date()).format('YYYY-MM-DD[T]HH:mm'),
+  dateFrom: moment(new Date()).format('YYYY-MM-DD[T]HH:mm'),
+}
 export default Modal;

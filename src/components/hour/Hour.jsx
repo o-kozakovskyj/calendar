@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import moment from 'moment/moment';
-
+import { PropTypes } from 'prop-types';
 import Event from '../event/Event';
 import { formatMins } from '../../../src/utils/dateUtils.js';
 
-const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay, dayEvents }) => {
+const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay }) => {
  
   const [current, updateCurrent] = useState(new Date())
   useEffect(() => {
@@ -36,8 +36,6 @@ const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay, dayEvents }) => {
             id={id}
             startTime={dateFrom}
             endTime={dateTo}
-            height={(new Date(dateTo).getTime() - new Date(dateFrom).getTime()) / (1000 * 60)}
-            marginTop={new Date(dateFrom).getMinutes()}
             time={`${eventStart} - ${eventEnd}`}
             title={title}
             deleteEvent={deleteEvent}
@@ -48,5 +46,13 @@ const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay, dayEvents }) => {
     </div>
   );
 };
-
+Hour.propTypes = {
+  deleteEvent: PropTypes.func,
+  dataHour: PropTypes.number,
+  hourEvents: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
+  dataDay: PropTypes.instanceOf(Date).isRequired,
+}
+Hour.defaultProps = {
+  hourEvents: [],
+}
 export default Hour;

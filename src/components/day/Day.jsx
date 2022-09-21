@@ -1,6 +1,7 @@
 import React from 'react';
 import Hour from '../hour/Hour';
 import moment from 'moment/moment';
+import { PropTypes } from 'prop-types';
 import './day.scss';
 
 const Day = ({ dataDay, dayEvents, deleteEvent, handleModalSwitch }) => {
@@ -37,5 +38,13 @@ const Day = ({ dataDay, dayEvents, deleteEvent, handleModalSwitch }) => {
     </div>
   );
 };
-
+Day.propTypes = {
+  handleModalSwitch: PropTypes.func,
+  deleteEvent: PropTypes.func,
+  dataDay: PropTypes.instanceOf(Date).isRequired,
+  dayEvents: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
+}
+Day.defaultProps = {
+  dayEvents:[],
+}
 export default Day;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Day from '../day/Day';
-
+import { PropTypes } from 'prop-types';
 import './week.scss';
 
 const Week = ({ weekDates, events, deleteEvent, handleModalSwitch }) => {
@@ -19,7 +19,6 @@ const Week = ({ weekDates, events, deleteEvent, handleModalSwitch }) => {
           dayEvents={dayEvents}
           deleteEvent={deleteEvent}
           handleModalSwitch={handleModalSwitch}
-
         />
       );
     });
@@ -30,5 +29,14 @@ const Week = ({ weekDates, events, deleteEvent, handleModalSwitch }) => {
     </div>
   );
 };
-
+Week.propTypes = {
+  handleModalSwitch: PropTypes.func,
+  deleteEvent: PropTypes.func,
+  weekDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
+  events: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired
+}
+Week.defaultProps = {
+  weekDates: [],
+  events: [],
+}
 export default Week;

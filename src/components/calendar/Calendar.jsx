@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { PropTypes } from 'prop-types';
 import Navigation from './../navigation/Navigation';
 import Week from '../week/Week';
 import Sidebar from '../sidebar/Sidebar';
@@ -36,5 +36,11 @@ const Calendar = ({ weekDates,handleModalSwitch }) => {
     );
   }
 
-
+Calendar.propTypes = {
+  handleModalSwitch: PropTypes.func,
+  weekDates: PropTypes.arrayOf(PropTypes.instanceOf(Date)).isRequired,
+}
+Calendar.defaultProps = {
+  weekDates: [],
+}
 export default Calendar;
