@@ -1,4 +1,4 @@
-# foundation
+# Calendar
 ### [Site link](https://o-kozakovskyj.github.io/calendar/)
 -Layout supports all mobile and desktop versions
 ### The tech stack is:
