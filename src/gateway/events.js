@@ -1,4 +1,5 @@
 const baseUrl = 'https://63065f06c0d0f2b8011beb27.mockapi.io/api/v1/events';
+
 export const fetchEventsList = () => {
   return fetch(baseUrl)
     .then(response => {
@@ -10,7 +11,8 @@ export const fetchEventsList = () => {
     .then(tasksList => {
       return tasksList;
     });
-}
+};
+
 export const createEvent = eventData => {
 
   return fetch(baseUrl, {
@@ -24,7 +26,7 @@ export const createEvent = eventData => {
       throw new Error('Fail to create event')
     }
   });
-}
+};
 
 export const deleteEvent = eventId => {
   return fetch(`${baseUrl}/${eventId}`, {
@@ -34,4 +36,4 @@ export const deleteEvent = eventId => {
       throw new Error('Fail to delete event');
     }
   });
-}
+};

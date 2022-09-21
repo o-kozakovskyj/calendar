@@ -2,7 +2,7 @@ import React from 'react';
 import './modal.scss';
 import { useState } from 'react';
 import moment from 'moment/moment';
-import { createEvent } from '../../gateway/events';
+import { createEvent, fetchEventsList } from '../../gateway/events';
 
 const Modal = ({ setIsShowModal, dateTo, dateFrom }) => {
   const [formData, setformData] = useState({
@@ -12,7 +12,9 @@ const Modal = ({ setIsShowModal, dateTo, dateFrom }) => {
     startTime: dateFrom.split('T')[1],
     endTime: dateTo.split('T')[1],
   });
-
+  // fetchEventsList().then((eventsList) => {
+  //   console.log(eventsList.filter(event => Date.parse(event.dateFrom) > Date.parse(dateFrom) && Date.parse(event.dateTo) < dateTo))   
+  // });
   const handleSubmit = () => {
     const newEvent = {
       title: formData.title,

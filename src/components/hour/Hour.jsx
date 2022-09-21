@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-
+import moment from 'moment/moment';
 
 import Event from '../event/Event';
 import { formatMins } from '../../../src/utils/dateUtils.js';
 
-const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay }) => {
+const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay, dayEvents }) => {
  
   const [current, updateCurrent] = useState(new Date())
   useEffect(() => {
@@ -23,8 +23,6 @@ const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay }) => {
   
   return (
     <div className="calendar__time-slot" data-time={dataHour}>
-      
-      {/* if no events in the current hour nothing will render here */}
       {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
         const eventStart = `${new Date(dateFrom).getHours()}:${formatMins(
           new Date(dateFrom).getMinutes()
@@ -38,7 +36,6 @@ const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay }) => {
             id={id}
             startTime={dateFrom}
             endTime={dateTo}
-            //calculating event height = duration of event in minutes
             height={(new Date(dateTo).getTime() - new Date(dateFrom).getTime()) / (1000 * 60)}
             marginTop={new Date(dateFrom).getMinutes()}
             time={`${eventStart} - ${eventEnd}`}
@@ -47,7 +44,7 @@ const Hour = ({ dataHour, hourEvents, deleteEvent, dataDay }) => {
           />
         );
       })}
-      {current.getDate() === dataDay.getDate() && current.getHours() ===dataHour && currentTime}
+      {moment(current).format("YY/M/DD/HH") === moment(dataDay).set('hour', dataHour).format("YY/M/DD/HH") && currentTime}
     </div>
   );
 };

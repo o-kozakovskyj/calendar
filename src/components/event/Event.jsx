@@ -3,7 +3,7 @@ import { useState } from 'react';
 import moment from 'moment/moment';
 import './event.scss';
 
-const Event = ({ height, marginTop, title, time, id, startTime, deleteEvent, endTime }) => {
+const Event = ({ height, marginTop, title, time, id, startTime, deleteEvent, endTime, dayEvents }) => {
   const eventStyle = {
     height,
     marginTop,
