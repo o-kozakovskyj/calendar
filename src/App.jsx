@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
 import Modal from './components/modal/Modal.jsx';
-import moment, { weekdays } from 'moment/moment.js';
+import moment from 'moment/moment.js';
 import { getWeekStartDate, generateWeekRange, getMonthName } from '../src/utils/dateUtils.js';
 import './common.scss';
 

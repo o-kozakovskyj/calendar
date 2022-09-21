@@ -17,7 +17,6 @@ const Calendar = ({ weekDates,handleModalSwitch }) => {
     deleteEvent(id).then(() => fetchEvents())
   }
   useEffect(() => fetchEvents(), []);
-
     return (
       <section className="calendar" >
         <Navigation weekDates={weekDates} />

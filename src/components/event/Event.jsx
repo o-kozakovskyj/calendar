@@ -46,6 +46,7 @@ const Event = ({ title, time, id, startTime, deleteEvent, endTime }) => {
     </div>
   );
 };
+
 Event.propTypes = {
   id: PropTypes.string,
   startTime: PropTypes.string,
@@ -53,9 +54,8 @@ Event.propTypes = {
   time: PropTypes.string,
   title: PropTypes.string,
   deleteEvent: PropTypes.func,
-
-}
+};
 Event.defaultProps = {
   title: '',
-}
+};
 export default Event;

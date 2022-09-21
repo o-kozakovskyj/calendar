@@ -6,6 +6,7 @@
   &__gmt {
     font-size: 10px;
     opacity: 0.7;
+    height: 10px;
   }
 
   &__header {
@@ -16,7 +17,6 @@
   }
 
   &__body {
-    display: flex;
     overflow: auto;
   }
 

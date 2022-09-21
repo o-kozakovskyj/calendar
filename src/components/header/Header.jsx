@@ -7,10 +7,10 @@ import moment from 'moment/moment';
 const Header = ({ setWeekStartDate, date, month, handleModalSwitch }) => {
   const handleModalWithData = () => {
     const dateFrom = moment(new Date()).format('YYYY-MM-DD[T]HH:mm');
-    const dateTo =dateFrom;
+    const dateTo = dateFrom;
     handleModalSwitch(dateFrom, dateTo);
-  }
- 
+  };
+
   return (
     <header className="header">
       <button className="button create-event-btn" onClick={handleModalWithData}>
@@ -29,14 +29,15 @@ const Header = ({ setWeekStartDate, date, month, handleModalSwitch }) => {
     </header>
   );
 };
+
 Header.propTypes = {
   setWeekStartDate: PropTypes.func,
-  date:PropTypes.instanceOf(Date).isRequired,
+  date: PropTypes.instanceOf(Date).isRequired,
   month: PropTypes.string.isRequired,
   handleModalSwitch: PropTypes.func,
-}
+};
 Header.defaultProps = {
   date: moment(new Date()).startOf('isoweek'),
   month: '',
-}
+};
 export default Header;
