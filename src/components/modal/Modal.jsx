@@ -13,9 +13,7 @@ const Modal = ({ setIsShowModal, dateTo, dateFrom }) => {
     startTime: dateFrom.split('T')[1],
     endTime: dateTo.split('T')[1],
   });
-  // fetchEventsList().then((eventsList) => {
-  //   console.log(eventsList.filter(event => Date.parse(event.dateFrom) > Date.parse(dateFrom) && Date.parse(event.dateTo) < dateTo))   
-  // });
+ 
   const handleSubmit = () => {
     const newEvent = {
       title: formData.title,
